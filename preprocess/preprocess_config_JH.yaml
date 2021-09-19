@@ -1,0 +1,30 @@
+# according to their matlab implementation, sliding window is 64: https://github.com/ai-med/ReLayNet/blob/master/Network_and_Dependencies/ReLayNet.m
+general:
+    layers: 9
+    bscans: 49
+    width: 1024
+    sliding_window: 64
+    height: 496
+    stride: 64
+    top_offset: 20
+    split_ratio: 0.2
+    seed: 0
+    save: False
+    crop: False
+    getPatches: True
+    constructSyntheticMap: False
+    data_list: ["data", "lmap", "wmap","rmask"] 
+    
+filepaths:
+    group: 'hc'
+    filename: "JH"
+    save_filename: "JH"
+    label_path: "../../data/labels/"
+    image_path: "../../data/raw/"
+    processed_path: "../../data/processed"
+    
+algorithm:
+    scanner_type: 'spectralis'
+    preproc_params: {normalize: 2, filter: 0,filter_kernel: [1,1,3], flatten: 0, fast_rpe: 0, get_smap: 1, remove_bkgd: 0}
+    types: 'hc'
+    probs: 0.05

@@ -1,0 +1,22 @@
+general:
+    layers: 9
+    HEIGHT: 496
+    WIDTH: 64
+
+param:
+    num_channels: 1
+    num_filters: 64
+    kernel_h: 7
+    kernel_w: 3
+    kernel_c: 1
+    num_class: 9
+    stride_conv: 1
+    pool: 2
+    stride_pool: 2
+    
+filepaths:
+    processed_data_path: '../data/processed/JH'
+    exp_dir_name: "Exp03"
+    save_filename: "JH"
+    model_path: "../models"
+    

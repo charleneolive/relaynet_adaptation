@@ -1,0 +1,11 @@
+general:
+    height: 496
+    width: 1024
+    layers: 9
+    
+filepaths:
+    dataset_name: 'JH'
+    data_dir: '../data'
+    save_path: '../predictions'
+    test_dataset: 'test_dataset.txt'
+    model_path: '../models/Exp03/relaynet_epoch7.model' 
