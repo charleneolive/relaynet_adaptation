@@ -5,7 +5,7 @@ Original authors : Abhijit Guha Roy and Shayan Siddiqui (https://github.com/shay
 Adapted by: Charlene Ong
 
 ## Table of Contents
-1. [About the Files](#description)
+1. [Description](#description)
 2. [About the Files](#about-files)
 3. [Directory Structure](#directory-structure)
 4. [Datasets](#datasets)
