@@ -15,7 +15,7 @@ Adapted by: Charlene Ong
 
 ## Description <a name="description"></a>
 
-PyTorch Implementation of ReLayNet. The original implementation came from the original github repo[https://github.com/ai-med/relaynet_pytorch] but some modifications are made by yours truly for the Data Resource for Healthy Controls and Multiple Sclerosis dataset. 
+PyTorch Implementation of ReLayNet. The original implementation came from the original [github repo](https://github.com/ai-med/relaynet_pytorch) but some modifications are made by yours truly for the Data Resource for Healthy Controls and Multiple Sclerosis dataset. 
 
 ## About the Files <a name="about-files"></a>
 1. `networks`: folder containing the model architecture, training, losses 
