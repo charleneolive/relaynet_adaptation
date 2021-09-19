@@ -8,4 +8,4 @@ filepaths:
     data_dir: '../data'
     save_path: '../predictions'
     test_dataset: 'test_dataset.txt'
-    model_path: '../models/Exp03/relaynet_epoch7.model' 
+    model_path: '../models/Exp03/relaynet_epoch19.model' 

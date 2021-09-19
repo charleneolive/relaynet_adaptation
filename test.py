@@ -12,7 +12,7 @@ import matplotlib.pyplot as plt
 from preprocess.data_prep_utils import retinaFlatten as rf
 from preprocess.data_prep_utils import octSpectralisReader as rd
 from preprocess.data_prep_utils.misc import build_mask
-from networks.data_utils import get_imdb_data
+from networks.data_utils import ImdbData
 
 import torch
 from torch.utils.data import DataLoader, Dataset
