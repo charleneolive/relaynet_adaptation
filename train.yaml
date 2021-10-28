@@ -1,5 +1,5 @@
 general:
-    layers: 9
+    layers: 10
     HEIGHT: 496
     WIDTH: 64
 
@@ -9,7 +9,7 @@ param:
     kernel_h: 7
     kernel_w: 3
     kernel_c: 1
-    num_class: 9
+    num_class: 10
     stride_conv: 1
     pool: 2
     stride_pool: 2

@@ -18,12 +18,13 @@ class BasicBlock(nn.Module):
                               padding=(padding_h, padding_w),
                               stride=params['stride_conv'])
         self.batchnorm = nn.BatchNorm2d(num_features=params['num_filters'])
-        self.prelu = nn.PReLU()
+#         self.prelu = nn.PReLU()
+        self.relu = nn.ReLU()
 
     def forward(self, X):
         out_conv = self.conv(X)
         out_bn = self.batchnorm(out_conv)
-        out_prelu = self.prelu(out_bn)
+        out_prelu = self.relu(out_bn) # why is prelu used here
         return out_prelu
 
 

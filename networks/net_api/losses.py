@@ -4,11 +4,6 @@ import numpy as np
 from torch.nn.modules.loss import _Loss
 from torch.autograd import Function, Variable
 import torch.nn as nn
-import torch
-import numpy as np
-from torch.nn.modules.loss import _Loss
-from torch.autograd import Function, Variable
-import torch.nn as nn
 import torch.nn.functional as F
 
 
@@ -46,11 +41,12 @@ class DiceLoss(_Loss):
             target :  NxHxW LongTensor
             weights : C FloatTensor
             ignore_index : int index to ignore from loss
+            mean dice loss across channels
             """
         eps = 0.0001
 
-        output = output.exp()
-        encoded_target = output.detach() * 0
+#         output = output.exp()
+#         encoded_target = output.detach() * 0
         if ignore_index is not None:
             mask = target == ignore_index
             target = target.clone()
@@ -64,17 +60,17 @@ class DiceLoss(_Loss):
         if weights is None:
             weights = 1
 
-        intersection = output * encoded_target
-        numerator = 2 * intersection.sum(0).sum(1).sum(1)
+        encoded_target = encoded_target.detach().float()
+        intersection = output * encoded_target # N x C x H x W
+        numerator = 2 * intersection.sum(0).sum(1).sum(1) # sum across batches, H and W
         denominator = output + encoded_target
 
         if ignore_index is not None:
             denominator[mask] = 0
-        denominator = denominator.sum(0).sum(1).sum(1) + eps
+        denominator = denominator.sum(0).sum(1).sum(1) + eps # sum across batches, height and width
         loss_per_channel = weights * (1 - (numerator / denominator))
 
-        return loss_per_channel.sum() / output.size(1)
-
+        return loss_per_channel.sum() / output.size(1) 
 
 class CrossEntropyLoss2d(nn.Module):
     def __init__(self, weight=None, size_average=True):
@@ -86,20 +82,24 @@ class CrossEntropyLoss2d(nn.Module):
 
 
 class CombinedLoss(nn.Module):
-    def __init__(self):
+    def __init__(self, device):
         super(CombinedLoss, self).__init__()
         self.cross_entropy_loss = CrossEntropyLoss2d()
         self.dice_loss = DiceLoss()
+        self.device = device
 
     def forward(self, X, target, weight):
         # TODO: why?
-        target = target.type(torch.LongTensor).cuda()
+        target = target.type(torch.LongTensor).to(self.device)
 #         
 #         target = torch.unsqueeze(target, dim=1)
         
         input_soft = F.softmax(X,dim=1)
-        y2 = torch.mean(self.dice_loss(input_soft, target))
+#         y2 = torch.mean(self.dice_loss(input_soft, target)) # get mean of all elements
+        y2 = self.dice_loss(input_soft, target)
         _,target = torch.max(target, dim = 1)
-        y1 = torch.mean(torch.mul(self.cross_entropy_loss.forward(X, target), weight))
-        y = y1 + y2
+        y1 = torch.mean(torch.mul(self.cross_entropy_loss.forward(X, target), weight)) # combines logsoftmax and nllloss
+        y = y1 + 0.5*y2
         return y
+    
+

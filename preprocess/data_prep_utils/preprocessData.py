@@ -90,7 +90,7 @@ class preprocessData():
         layers_map = np.zeros((self.layers, self.height, self.width, self.bscans))
         for scan in range(self.bscans):
             layers_map[:,:,:,scan] = build_mask(self.annotations[:,scan,:],self.height,self.width)
-            
+        
         layers_map[self.layers-1]=background-np.sum(layers_map[:-1,:,:,:],0)
         
         self.layers_map = layers_map

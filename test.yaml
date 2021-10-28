@@ -1,11 +1,29 @@
 general:
     height: 496
     width: 1024
-    layers: 9
+    bscans: 49
+    layers: 10
+    ori_layers: 9
+    
+layers:
+    JH:
+        RNFL: [128, 64,128]
+        GCL-IPL: [244, 35,232]
+        INL: [ 70, 70, 70]
+        OPL: [102,102,156]
+        ONL: [190,153,153]
+        IS: [153,153,153]
+        OS: [250,170, 30]
+        RPE: [220,220,  0]
+        Background: [0,0,0]
+
     
 filepaths:
     dataset_name: 'JH'
-    data_dir: '../data'
-    save_path: '../predictions'
+    project_dir: '../'
+    save_path: 'evaluations'
+    predictions: '../predictions'
     test_dataset: 'test_dataset.txt'
-    model_path: '../models/Exp03/relaynet_epoch19.model' 
+    label_file: 'test_intermediate.hdf5'
+    reconstruct_file_path: 'test_reconstruct_data.csv'
+    model_path: '../models/Exp03/relaynet_epoch60.model' 

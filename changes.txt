@@ -1,0 +1,16 @@
+1. Segmentation labels
+- split background into region above retina and region below RPE
+
+
+2. Relu vs Prelu? = DONE
+Original paper and method use Relu (I changed back to ReLU)
+
+3. Transformations 
+Validation dataset: Is this needed or just train is enough?  =? just train is enough as no validation
+Are the transformations correct? => changed to be similar to matlab code
+
+4. Some error with wmap = FIXED 
+5. Not sure slicing width for training is by how much => also 64 
+
+6. Train for how many epochs? => 60
+7. Only need to split into train and test

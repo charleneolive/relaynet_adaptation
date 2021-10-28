@@ -10,8 +10,8 @@ general:
     split_ratio: 0.2
     seed: 0
     save: False
-    crop: False
-    getPatches: True
+    crop: False # if crop is True, height need to reduce
+    getPatches: True 
     constructSyntheticMap: False
     data_list: ["data", "lmap", "wmap","rmask"] 
     

@@ -30,8 +30,6 @@ class ImdbData(data.Dataset):
 
 
 def get_imdb_data(data_dir):
-    # TODO: Need to change later
-    NumClass = 9
 
     # Load DATA
     
